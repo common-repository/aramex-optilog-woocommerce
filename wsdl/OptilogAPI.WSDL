@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/"
+                  xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+                  xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+                  xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+                  xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy"
+                  xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl"
+                  xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+                  xmlns:wsu="http://docs.oasisopen.org/wss/2004/01/oasis200401wsswssecurityutility1.0.xsd"
+                  xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://tempuri.org/" name="Optilog">
+    <wsp:Policy wsu:Id="BasicHttpsBinding_IOptilog_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <sp:HttpsToken RequireClientCertificate="false"/>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsp:Policy wsu:Id="NetTcpBinding_IOptilog_policy">
+        <wsp:ExactlyOne>
+            <wsp:All>
+                <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1"/>
+                <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+                    <wsp:Policy>
+                        <sp:TransportToken>
+                            <wsp:Policy>
+                                <msf:WindowsTransportSecurity
+                                        xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                                    <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                                </msf:WindowsTransportSecurity>
+                            </wsp:Policy>
+                        </sp:TransportToken>
+                        <sp:AlgorithmSuite>
+                            <wsp:Policy>
+                                <sp:Basic256/>
+                            </wsp:Policy>
+                        </sp:AlgorithmSuite>
+                        <sp:Layout>
+                            <wsp:Policy>
+                                <sp:Strict/>
+                            </wsp:Policy>
+                        </sp:Layout>
+                    </wsp:Policy>
+                </sp:TransportBinding>
+                <wsaw:UsingAddressing/>
+            </wsp:All>
+        </wsp:ExactlyOne>
+    </wsp:Policy>
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://tempuri.org/Imports">
+            <xsd:import namespace="http://tempuri.org/"
+                        schemaLocation="https://ws.aramex.net/Optilog/Optilog.svc?xsd=xsd0"/>
+            <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/"
+                        schemaLocation="https://ws.aramex.net/Optilog/Optilog.svc?xsd=xsd1"/>
+            <xsd:import namespace="http://schemas.datacontract.org/2004/07/Corp.Optilog.Api"
+                        schemaLocation="https://ws.aramex.net/Optilog/Optilog.svc?xsd=xsd2"/>
+            <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"
+                        schemaLocation="https://ws.aramex.net/Optilog/Optilog.svc?xsd=xsd3"/>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="IOptilog_GetStock_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetStock"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_GetStock_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetStockResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CreateASN_InputMessage">
+        <wsdl:part name="parameters" element="tns:CreateASN"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CreateASN_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CreateASNResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CreateSO_InputMessage">
+        <wsdl:part name="parameters" element="tns:CreateSO"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CreateSO_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CreateSOResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CreateItems_InputMessage">
+        <wsdl:part name="parameters" element="tns:CreateItems"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CreateItems_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CreateItemsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CancelSO_InputMessage">
+        <wsdl:part name="parameters" element="tns:CancelSO"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_CancelSO_OutputMessage">
+        <wsdl:part name="parameters" element="tns:CancelSOResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_UpdateSODeliveryDate_InputMessage">
+        <wsdl:part name="parameters" element="tns:UpdateSODeliveryDate"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_UpdateSODeliveryDate_OutputMessage">
+        <wsdl:part name="parameters" element="tns:UpdateSODeliveryDateResponse"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_GetSOStatus_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetSOStatus"/>
+    </wsdl:message>
+    <wsdl:message name="IOptilog_GetSOStatus_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetSOStatusResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="IOptilog">
+        <wsdl:operation name="GetStock">
+            <wsdl:input message="tns:IOptilog_GetStock_InputMessage"
+                        wsaw:Action="http://tempuri.org/IOptilog/GetStock"/>
+            <wsdl:output message="tns:IOptilog_GetStock_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IOptilog/GetStockResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreateASN">
+            <wsdl:input message="tns:IOptilog_CreateASN_InputMessage"
+                        wsaw:Action="http://tempuri.org/IOptilog/CreateASN"/>
+            <wsdl:output message="tns:IOptilog_CreateASN_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IOptilog/CreateASNResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreateSO">
+            <wsdl:input message="tns:IOptilog_CreateSO_InputMessage"
+                        wsaw:Action="http://tempuri.org/IOptilog/CreateSO"/>
+            <wsdl:output message="tns:IOptilog_CreateSO_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IOptilog/CreateSOResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CreateItems">
+            <wsdl:input message="tns:IOptilog_CreateItems_InputMessage"
+                        wsaw:Action="http://tempuri.org/IOptilog/CreateItems"/>
+            <wsdl:output message="tns:IOptilog_CreateItems_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IOptilog/CreateItemsResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="CancelSO">
+            <wsdl:input message="tns:IOptilog_CancelSO_InputMessage"
+                        wsaw:Action="http://tempuri.org/IOptilog/CancelSO"/>
+            <wsdl:output message="tns:IOptilog_CancelSO_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IOptilog/CancelSOResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateSODeliveryDate">
+            <wsdl:input message="tns:IOptilog_UpdateSODeliveryDate_InputMessage"
+                        wsaw:Action="http://tempuri.org/IOptilog/UpdateSODeliveryDate"/>
+            <wsdl:output message="tns:IOptilog_UpdateSODeliveryDate_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IOptilog/UpdateSODeliveryDateResponse"/>
+        </wsdl:operation>
+        <wsdl:operation name="GetSOStatus">
+            <wsdl:input message="tns:IOptilog_GetSOStatus_InputMessage"
+                        wsaw:Action="http://tempuri.org/IOptilog/GetSOStatus"/>
+            <wsdl:output message="tns:IOptilog_GetSOStatus_OutputMessage"
+                         wsaw:Action="http://tempuri.org/IOptilog/GetSOStatusResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="BasicHttpBinding_IOptilog" type="tns:IOptilog">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetStock">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/GetStock"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateASN">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateASN"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateSO">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateSO"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateItems">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateItems"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancelSO">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CancelSO"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateSODeliveryDate">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/UpdateSODeliveryDate"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSOStatus">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/GetSOStatus"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="BasicHttpsBinding_IOptilog" type="tns:IOptilog">
+        <wsp:PolicyReference URI="#BasicHttpsBinding_IOptilog_policy"/>
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetStock">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/GetStock"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateASN">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateASN"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateSO">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateSO"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateItems">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateItems"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancelSO">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/CancelSO"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateSODeliveryDate">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/UpdateSODeliveryDate"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSOStatus">
+            <soap:operation style="document" soapAction="http://tempuri.org/IOptilog/GetSOStatus"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="NetTcpBinding_IOptilog" type="tns:IOptilog">
+        <wsp:PolicyReference URI="#NetTcpBinding_IOptilog_policy"/>
+        <soap12:binding transport="http://schemas.microsoft.com/soap/tcp"/>
+        <wsdl:operation name="GetStock">
+            <soap12:operation style="document" soapAction="http://tempuri.org/IOptilog/GetStock"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateASN">
+            <soap12:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateASN"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateSO">
+            <soap12:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateSO"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateItems">
+            <soap12:operation style="document" soapAction="http://tempuri.org/IOptilog/CreateItems"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CancelSO">
+            <soap12:operation style="document" soapAction="http://tempuri.org/IOptilog/CancelSO"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="UpdateSODeliveryDate">
+            <soap12:operation style="document" soapAction="http://tempuri.org/IOptilog/UpdateSODeliveryDate"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetSOStatus">
+            <soap12:operation style="document" soapAction="http://tempuri.org/IOptilog/GetSOStatus"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="Optilog">
+        <wsdl:port name="BasicHttpBinding_IOptilog" binding="tns:BasicHttpBinding_IOptilog">
+            <soap:address location="http://ws.aramex.net/Optilog/Optilog.svc"/>
+        </wsdl:port>
+        <wsdl:port name="BasicHttpsBinding_IOptilog" binding="tns:BasicHttpsBinding_IOptilog">
+            <soap:address location="https://ws.aramex.net/Optilog/Optilog.svc"/>
+        </wsdl:port>
+        <wsdl:port name="NetTcpBinding_IOptilog" binding="tns:NetTcpBinding_IOptilog">
+            <soap12:address location="net.tcp://anfe08.aramex.com/Optilog/Optilog.svc"/>
+            <wsa10:EndpointReference>
+                <wsa10:Address>net.tcp://anfe08.aramex.com/Optilog/Optilog.svc</wsa10:Address>
+                <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+                    <Upn>App_IISPOOL_Ws@aramex.com</Upn>
+                </Identity>
+            </wsa10:EndpointReference>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

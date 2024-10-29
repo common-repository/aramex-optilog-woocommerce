@@ -1,0 +1,40 @@
+.optilog_bulk {
+    width: 728px;
+    font-family: verdana;
+    font-size: 13px !important;
+    margin: 0 auto;
+    opacity: 1;
+    background: #fff;
+    padding: 15px;
+    margin-top: 10px;
+    border: 1px solid #D6D6D6;
+    overflow: hidden;
+    z-index: 9999;
+
+
+}
+.optilog_background {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    /* Fallback for web browsers that don't support RGBa */
+    background-color: rgb(0, 0, 0);
+    /* RGBa with 0.6 opacity */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* For IE 5.5 - 7*/
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+    /* For IE 8*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+    z-index: 100000;
+}
+.optilog-middle{
+    display:block;
+    text-align: center;
+}
+.optilog_popup-inner-top{
+    overflow:hidden;
+    text-align: right;
+    padding-bottom:3px;
+}
